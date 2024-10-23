@@ -6,7 +6,7 @@ compile:
         - component: "FMS"
           repo: "https://github.com/NOAA-GFDL/FMS.git"
           branch: "2024.01"
-          cppdefs: "-DHAVE_GETTID -DINTERNAL_FILE_NML -Duse_libMPI -Duse_netCDF"
+          cppdefs: "-DINTERNAL_FILE_NML -Duse_libMPI -Duse_netCDF"
           otherFlags: *FMSincludes
         - component: "GRTCODE"
           repo: "https://github.com/NOAA-GFDL/GRTCODE.git"
@@ -69,7 +69,7 @@ compile:
           branch: "2023.04"
           paths: ["atmos_drivers/coupled"]
           cppdefs: "-DINTERNAL_FILE_NML -DSPMD -DCLIMATE_NUDGE"
-          otherFlags: "$(FMSincludes)"
+          otherFlags: *FMSincludes
         - component: "land_lad2"
           requires: ["FMS"]
           repo: "https://gitlab.gfdl.noaa.gov/FMS/land_lad2.git"

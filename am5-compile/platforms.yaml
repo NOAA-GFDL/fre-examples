@@ -1,4 +1,11 @@
 platforms:
+   - name: amd.inteloneapi
+     compiler: intel
+     modules: [ !join [*INTEL, "/2024.2"],compiler/2024.2,mpi,netcdf/4.9.2,hdf5/1.14.4-3,libyaml/0.2.5]
+     fc: mpiifx
+     cc: mpiicx 
+     mkTemplate: !join ["/home/Lauren.Chilutti/mkmf/templates/ncrc5-intel-", *INTEL, ".mk"]
+     modelRoot: ${HOME}/fremake_canopy/test
    - name: ncrc5.intel
      compiler: intel
      modulesInit: [" module use -a /ncrc/home2/fms/local/modulefiles \n","source $MODULESHOME/init/sh \n"]
