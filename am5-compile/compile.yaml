@@ -1,11 +1,11 @@
 compile:
-    experiment: "am5"
+    experiment: !join [*AM5_VERSION, "_compile"]
     container_addlibs: 
     baremetal_linkerflags:  
     src:
         - component: "FMS"
           repo: "https://github.com/NOAA-GFDL/FMS.git"
-          branch: "2024.01"
+          branch: "2024.02"
           cppdefs: "-DHAVE_GETTID -DINTERNAL_FILE_NML -Duse_libMPI -Duse_netCDF"
           otherFlags: *FMSincludes
         - component: "GRTCODE"
@@ -20,6 +20,7 @@ compile:
                   "GRTCODE/shortwave/src/solar_flux.c",
                   "GRTCODE/shortwave/src/solar_flux.h",
                   "GRTCODE/fortran-bindings"]
+          cppdefs: "-DSINGLE_PRECISION"
           makeOverrides: 'OPENMP=""'
         - component: "rte-rrtmgp"
           requires: ["FMS"]
@@ -35,19 +36,19 @@ compile:
                   "rte-rrtmgp/rrtmgp-kernels/mo_gas_optics_rrtmgp_kernels.F90",
                   "rte-rrtmgp/extensions/mo_heating_rates.F90",
                   "rte-rrtmgp/examples/mo_load_coefficients.F90"]
-          cppdefs: "-heap-arrays"
+          cppdefs: "-heap-arrays -DRTE_USE_SP"
           makeOverrides: 'OPENMP=""'
           otherFlags: *FMSincludes
         - component: "rte-ecckd"
           requires: ["FMS", "rte-rrtmgp"]
           repo: "http://github.com/NOAA-GFDL/rte-ecckd.git"
-          branch: "2024.01"
+          branch: "2024.03"
           paths: ["rte-ecckd/src/gas_optics_ecckd.f90"]
           otherFlags: *FMSincludes
         - component: "am5_phys"
           requires: ["FMS", "GRTCODE", "rte-rrtmgp", "rte-ecckd"]
           repo: "https://gitlab.gfdl.noaa.gov/FMS/am5_phys.git"
-          branch: "2024.08"
+          branch: "2024.10"
           paths: ["am5_phys/atmos_param", "am5_phys/atmos_shared"]
           cppdefs: "-DINTERNAL_FILE_NML"
           otherFlags: *FMSincludes
@@ -69,7 +70,7 @@ compile:
           branch: "2023.04"
           paths: ["atmos_drivers/coupled"]
           cppdefs: "-DINTERNAL_FILE_NML -DSPMD -DCLIMATE_NUDGE"
-          otherFlags: "$(FMSincludes)"
+          otherFlags: *FMSincludes
         - component: "land_lad2"
           requires: ["FMS"]
           repo: "https://gitlab.gfdl.noaa.gov/FMS/land_lad2.git"
@@ -79,8 +80,8 @@ compile:
           otherFlags: *FMSincludes
         - component: "mom6"
           requires: ["FMS"]
-          repo: ["https://github.com/NOAA-GFDL/ocean_BGC.git","https://github.com/NOAA-GFDL/MOM6-examples.git"]
-          branch: ["2023.01", "dev/gfdl"]
+          repo: ["https://github.com/NOAA-GFDL/ocean_BGC.git"]
+          branch: ["2023.01"]
           paths: ["mom6/MOM6-examples/src/MOM6/config_src/memory/dynamic_nonsymmetric", 
                   "mom6/MOM6-examples/src/MOM6/config_src/drivers/FMS_cap mom6/src/MOM6/src/*/", 
                   "mom6/MOM6-examples/src/MOM6/src/*",
@@ -93,13 +94,29 @@ compile:
                   "mom6/ocean_BGC/mocsy/src", 
                   "mom6/MOM6-examples/src/MOM6/pkg/GSW-Fortran/*/", 
                   "mom6/MOM6-examples/src/MOM6/config_src/infra/FMS2"] 
-          cppdefs: "-DINTERNAL_FILE_NML" #-DMAX_FIELDS_=100 -DNOT_SET_AFFINITY -D_USE_MOM6_DIAG -D_USE_GENERIC_TRACER  -DUSE_PRECISION=2"
+          cppdefs: "-DINTERNAL_FILE_NML -DMAX_FIELDS_=100 -DNOT_SET_AFFINITY -D_USE_MOM6_DIAG -D_USE_GENERIC_TRACER  -DUSE_PRECISION=2"
           makeOverrides: 'OPENMP=""'
           otherFlags: !join [*FMSincludes, " ", *momIncludes]
+          additionalInstructions: |
+              cd mom6
+              git clone https://github.com/NOAA-GFDL/MOM6-examples.git -b dev/gfdl
+              cd MOM6-examples
+              git checkout 753f135 # this is just the value of MOM6_GIT_TAG property, can't seem to use variable
+              git submodule update --recursive --init src/MOM6 src/SIS2 src/icebergs
+
+              cd src/MOM6
+              git checkout 878fd1ef671456a804c598df606e4cf7c803c203
+
+              cd ../SIS2
+              git checkout 00c3b5be13721a7af99f62f2163969e8dd303df7
+
+              cd ../icebergs
+              git checkout 6a8944fc7544608942de9a42bd3b96f6e56684e0
+              cd ../../../..
         - component: "sis2"
           requires: ["FMS", "mom6"]
           repo: ["https://github.com/NOAA-GFDL/ice_param.git"]
-          branch: ["2021.03"]
+          branch: ["2024.02"]
           paths: ["mom6/MOM6-examples/src/SIS2/config_src/dynamic_symmetric", 
                   "mom6/MOM6-examples/src/SIS2/config_src/external/Icepack_interfaces", 
                   "mom6/MOM6-examples/src/SIS2/src", 
@@ -110,6 +127,6 @@ compile:
         - component: "FMScoupler"
           requires: ["FMS", "GFDL_atmos_cubed_sphere", "atmos_drivers", "am5_phys", "land_lad2", "sis2", "mom6"]
           repo: "https://github.com/NOAA-GFDL/FMScoupler.git"
-          branch: "2023.04"
+          branch: "2024.02"
           paths: ["FMScoupler/full", "FMScoupler/shared"]
           otherFlags: !join [*FMSincludes, " ", *momIncludes]
