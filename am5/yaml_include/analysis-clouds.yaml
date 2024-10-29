@@ -9,5 +9,4 @@ clouds:
     script: 'analysis-clouds.sh'
     install: 'install-analysis-clouds.sh'
     publish: 'publish-analysis-clouds.sh'
-    script_frequency: 'P1Y'
-    script_frequency: *PP_CHUNK_B
+    script_frequency: *PP_AMIP_CHUNK96
