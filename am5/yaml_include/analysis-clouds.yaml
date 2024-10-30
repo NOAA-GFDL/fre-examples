@@ -1,12 +1,13 @@
-clouds:
-  required:
-    data_frequency: 'P1M'
-    date_range: ['2000', '2009']
-  workflow:
-    components: ["land", "radiation"]
-    cumulative: False
-    product: 'ts'
-    script: 'analysis-clouds.sh'
-    install: 'install-analysis-clouds.sh'
-    publish: 'publish-analysis-clouds.sh'
-    script_frequency: *PP_AMIP_CHUNK96
+analysis:
+  clouds:
+    required:
+      data_frequency: 'mon'
+      date_range: [*ANA_AMIP_START, *ANA_AMIP_END]
+    workflow:
+      components: ["land", "radiation"]
+      cumulative: False
+      product: 'ts'
+      script: 'analysis-clouds.sh'
+      install: 'install-analysis-clouds.sh'
+      publish: 'publish-analysis-clouds.sh'
+      script_frequency: *PP_AMIP_CHUNK96

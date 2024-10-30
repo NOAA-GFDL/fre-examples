@@ -1,11 +1,13 @@
-land:
-  required:
-    data_frequency: 'P1M'
-    date_range: ['2000', '2009']
-  workflow:
-    components: ["land"]
-    cumulative: False
-    product: 'ts'
-    script: 'analysis-land.sh'
-    install: 'install-analysis-land.sh'
-    script_frequency: *PP_AMIP_CHUNK96
+analysis:
+  land:
+    required:
+      data_frequency: 'mon'
+      date_range: [*ANA_AMIP_START, *ANA_AMIP_END]
+    workflow:
+      components: ["land"]
+      cumulative: False
+      product: 'ts'
+      script: 'analysis-land.sh'
+      install: 'install-analysis-land.sh'
+      script_frequency: *PP_AMIP_CHUNK96
+      switch: True
