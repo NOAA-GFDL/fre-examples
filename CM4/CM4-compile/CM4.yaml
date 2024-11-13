@@ -1,0 +1,53 @@
+#reusable variables
+fre_properties:
+  - &RELEASE               "2024.03"
+  - &FRE_STEM              !join ["fre/FMS", *RELEASE, "_mom6_", *MOM6_DATE]
+###  - &GRID_SPEC96      !join [$(CMIP6_ARCHIVE_ROOT), "/CM4/common/c96_grid/c96_OM4_025_grid_No_mg_drag_v20160808.tar"]
+  - &FMS_GIT_TAG           *RELEASE
+  - &COUPLER_GIT_TAG       *RELEASE
+  - &ATM_PHYS_GIT_TAG      "2024.02"
+  - &ATM_FV3_GIT_TAG       "20203.03"
+  - &ATM_DRV_GIT_TAG       "2023.04"
+  - &LAND_GIT_TAG          "2024.01"
+  - &ICE_PARAM_GIT_TAG     "2024.02"
+  - &OCEAN_BGC_GIT_TAG     "2023.04"
+  - &MOM6_GIT_TAG          "40e3937"
+  - &MOM6_DATE             "20231130"
+
+  - &INTEL
+  - &FMSincludes
+  - &momIncludes
+
+build:
+  compileYaml: "compile.yaml"
+  platformYaml: "platforms.yaml"
+
+shared:
+  directories: &shared_directories
+    history_dir:
+    pp_dir:
+    analysis_dir:
+    ptmp_dir:
+    fre_analysis_home:
+
+  postprocess:
+    settings: &shared_settings
+      history_segment:
+      site: "ppan"
+    switches: &shared_switches
+      do_statics:         True
+      do_timeavgs:        True
+      clean_work:         True
+      do_refinediag:      False
+      do_atmos_plevel_masking: True
+      do_preanalysis:     False
+      do_analysis:        True
+
+
+experiments:
+  - name: "c96_climo_cmip6_postprocess"
+    pp: "yaml_include/"
+  - name: "OM4_postprocess"
+    pp: "yaml_include/"
+  - name: "BLING_postprocess"
+    pp: "yaml_include/"

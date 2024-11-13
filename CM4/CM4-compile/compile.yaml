@@ -1,0 +1,86 @@
+compile:
+    experiment:
+    container_addlibs:
+    baremetal_linkerflags:
+    src:
+        - component: "FMS"
+          repo: "https://github.com/NOAA-GFDL/FMS.git"
+          branch: *FMS_GIT_TAG 
+          cppdefs: "-DINTERNAL_FILE_NML -Duse_yaml -Duse_libMPI -Duse_netCDF -DMAXFIELDMETHODS_=500"
+          otherFlags:
+        - component: "atmos_phys"
+          requires: ["FMS"]
+          repo: "http://gitlab.gfdl.noaa.gov/fms/atmos_phys.git"
+          branch: "main"
+          paths: ["atmos_phys"]
+          cppdefs: $(F2003_FLAGS)
+          otherFlags:
+          additionalInstructions:
+        - component: "GFDL_atmos_cubed_sphere"
+          requires: ["FMS", "atmos_phys"]
+          repo: "https://github.com/NOAA-GFDL/GFDL_atmos_cubed_sphere.git"
+          branch: *ATM_FV3_GIT_TAG
+          paths: ["GFDL_atmos_cubed_sphere/driver/GFDL",
+                  "GFDL_atmos_cubed_sphere/model",
+                  "GFDL_atmos_cubed_sphere/model_nh_null",
+                  "GFDL_atmos_cubed_sphere/GFDL_tools",
+		  "GFDL_atmos_cubed_sphere/driver/SHiELD/cloud_diagnosis.F90",
+                  "GFDL_atmos_cubed_sphere/driver/SHiELD/gfdl_cloud_microphys.F90",
+                  "GFDL_atmos_cubed_sphere/tools"]
+          cppdefs: $(F2003_FLAGS) "-DCLIMATE_NUDGE -DSPMD -DINTERNAL_FILE_NML"
+          makeOverrides: 
+          otherFlags:
+          additionalInstructions:
+        - component: "atmos_drivers"
+          requires: ["FMS", "atmos_phys", "GFDL_atmos_cubed_sphere"]
+          repo: "https://github.com/NOAA-GFDL/atmos_drivers.git"
+          branch: *ATM_DRV_GIT_TAG
+          paths: ["atmos_drivers/coupled"]
+          cppdefs: $(F2003_FLAGS) "-DCLIMATE_NUDGE -DSPMD"
+          makeOverrides: 
+          otherFlags:
+          additionalInstructions:
+        - component: "land_lad2"
+          requires: ["FMS"]
+          repo: "http://gitlab.gfdl.noaa.gov/fms/land_lad2.git"
+          branch: *LAND_GIT_TAG
+          paths: ["land_lad2"]
+          cppdefs: $(F2003_FLAGS) "-nostdinc -DINTERNAL_FILE_NML"
+          makeOverrides: 
+          otherFlags:
+          additionalInstructions:
+        - component: "mom6"
+          requires: ["FMS"]
+          repo: "https://github.com/NOAA-GFDL/ocean_BGC.git"
+          branch: "main" ##############?
+          paths: ["mom6/src/MOM6/config_src/{infra/FMS2,memory/dynamic_nonsymmetric,drivers/FMS_cap}",
+                  "mom6/src/MOM6/src/{*,*/*}", 
+                  "mom6/src/MOM6/config_src/external/{ODA_hooks,database_comms,drifters,stochastic_physics}", 
+                  "ocean_BGC/generic_tracers ocean_BGC/mocsy/src"]
+          cppdefs: #######stuff
+          makeOverrides: 'OPENMP=""'
+          otherFlags: 
+          additionalInstructions:
+        - component: "sis2"
+          requires: ["FMS", "mom6"]
+          repo: "https://github.com/NOAA-GFDL/ice_param.git"
+          branch: *ICE_PARAM_GIT_TAG
+          paths: ["mom6/src/SIS2/config_src/dynamic_symmetric", 
+                  "mom6/src/SIS2/config_src/external/Icepack_interfaces", 
+                  "mom6/src/SIS2/src", 
+                  "mom6/src/icebergs/src",
+                  "ice_param"]
+          cppdefs: #################
+          makeOverrides:
+          otherFlags:
+          additionalInstructions:
+        - component: "coupler"
+          requires: ["FMS", "atmos_dyn", "GFDL_atmos_cubed_sphere", "atmos_phys", "land_lad2", "sis2", "mom6"]
+          repo: "https://github.com/NOAA-GFDL/coupler.git"
+          branch: "main"
+          paths: ["coupler/shared", 
+                  "coupler/full"]
+          cppdefs:
+          makeOverrides:
+          otherFlags:
+          additionalInstructions:
