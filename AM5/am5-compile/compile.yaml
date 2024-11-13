@@ -6,7 +6,7 @@ compile:
         - component: "FMS"
           repo: "https://github.com/NOAA-GFDL/FMS.git"
           branch: "2024.02"
-          cppdefs: "-DHAVE_GETTID -DINTERNAL_FILE_NML -Duse_libMPI -Duse_netCDF"
+          cppdefs: "-DINTERNAL_FILE_NML -Duse_libMPI -Duse_netCDF"
           otherFlags: *FMSincludes
         - component: "GRTCODE"
           repo: "https://github.com/NOAA-GFDL/GRTCODE.git"
