@@ -1,0 +1,13 @@
+# reusable variables
+fre_properties:
+  - &FMS_VERSION        "2024.03"
+  - &FRE_STEM           !join ["SPEAR_experiments_Q_", *FMS_VERSION]
+
+  # compile information
+  - &INTEL               "intel-classic"
+  - &FMSincludes         "-IFMS/fms2_io/include -IFMS/include -IFMS/mpp/include"
+  - &momIncludes         "-IMOM6/src/framework" 
+build:
+  # compile information
+  compileYaml:  "compile.yaml"
+  platformYaml: "platforms.yaml"

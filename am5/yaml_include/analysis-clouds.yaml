@@ -1,8 +1,0 @@
-clouds:
-  components: ["land"]
-  cumulative: False
-  frequency: 'P1M'
-  product: 'ts'
-  script: 'analysis-clouds.sh'
-  install: 'install-analysis-clouds.sh'
-  publish: 'publish-analysis-clouds.sh'
