@@ -1,6 +1,6 @@
 # reusable variables
 fre_properties:
-  - &AM5_VERSION        "am5f8d0r1"
+  - &AM5_VERSION        "am5f8d2r0"
   - &FRE_STEM           !join [am5/, *AM5_VERSION]
 
   # amip
