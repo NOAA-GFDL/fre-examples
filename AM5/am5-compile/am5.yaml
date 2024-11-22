@@ -1,6 +1,6 @@
 # reusable variables
 fre_properties:
-  - &AM5_VERSION        "am5f7b12r1"
+  - &AM5_VERSION        "am5f8d2r0"
   - &FRE_STEM           !join [am5/, *AM5_VERSION]
 
   # amip
@@ -37,7 +37,7 @@ fre_properties:
   - &INTEL               "intel-classic"
   - &FMSincludes         "-IFMS/fms2_io/include -IFMS/include -IFMS/mpp/include"
   - &momIncludes         "-Imom6/MOM6-examples/src/MOM6/pkg/CVMix-src/include -Imom6/MOM6-examples/src/MOM6/src/framework" 
-
+  - &MOM6_EXAMPLES_GIT_TAG "753f135"
 build:
   # compile information
   compileYaml:  "compile.yaml"

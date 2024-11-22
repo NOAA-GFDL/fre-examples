@@ -1,0 +1,11 @@
+fre_properties:
+  - &AM5_VERSION        "am5f8d0r1"
+  - &OM5_VERSION        "om5_b06"
+  - &FRE_STEM           !join [cm5/, *AM5_VERSION, "_", *OM5_VERSION]
+  - &INTEL               "intel-classic"
+  - &FMSincludes         "-IFMS/fms2_io/include -IFMS/include -IFMS/mpp/include"
+  - &momIncludes         "-Imom6/MOM6-examples/src/MOM6/pkg/CVMix-src/include -Imom6/MOM6-examples/src/MOM6/src/framework"
+build:
+  # compile information
+  compileYaml:  "compile.yaml"
+  platformYaml: "platforms.yaml"
