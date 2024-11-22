@@ -41,5 +41,5 @@ experiments:
     pp:
         - "yaml_include/pp.c96_amip.yaml"
     analysis:
-        - "yaml_include/analysis-clouds.yaml"
         - "yaml_include/analysis-land.yaml"
+        - "yaml_include/analysis-clouds.yaml"
