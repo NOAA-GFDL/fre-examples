@@ -1,0 +1,47 @@
+fre_properties:
+  - &GITHUB              "https://github.com/NOAA-GFDL/"
+  - &GITLAB              "https://gitlab.gfdl.noaa.gov/fms/"
+  - &FLAGS_COMMON        "-DINTERNAL_FILE_NML -Duse_yaml -Duse_netCDF -g"
+  - &FRE_STEM            "land_test"
+  - &FMS_TAG             "2024.03"
+  - &COUPLER_TAG         "2024.03"
+  - &LAND_TAG            "2024.01"
+  - &ATMOS_PHYS_TAG      "2024.01"
+  - &ICE_PARAM_TAG       "2024.02"
+  - &ICE_AMIP_TAG        "2023.02"
+  - &OCEAN_AMIP_TAG      "2021.02"
+  - &ATMOS_SOLO_LAND_TAG "2023.04"
+  - &FLAGS_FMS  !join [*FLAGS_COMMON, " -Duse_libMPI"]
+  - &FLAGS_LAND !join [*FLAGS_COMMON, " -DDEBUG_LAND_TILE_DIAG"]
+
+build:
+  compileYaml:  "compile.yaml"
+  platformYaml: "platforms.yaml"
+
+shared:
+  directories: &shared_directories
+    history_dir:       !join [/archive/$USER/, *FRE_STEM, "/$name/$platform-$target/history"]
+    pp_dir:            !join [/archive/$USER/, *FRE_STEM, "/$name/$platform-$target/pp"]
+    analysis_dir:      !join [/nbhome/$USER/, *FRE_STEM, "/$name"]
+    ptmp_dir:          "/xtmp/$USER/ptmp"
+    fre_analysis_home: "/home/fms/local/opt/fre-analysis/test"
+  postprocess:
+    settings: &shared_settings
+      history_segment: "P1Y"
+      site:            "ppan"
+    switches: &shared_switches
+      do_statics:              True
+      do_timeavgs:             True
+      clean_work:              True
+      do_refinediag:           False
+      do_atmos_plevel_masking: True
+      do_preanalysis:          False
+      do_analysis:             True
+
+experiments:
+  - name: "LM4p1-C96-coldstart"
+  - name: "LM4p1-C96-1850"
+  - name: "LM4p1-C96-LU"
+  - name: "LM4p2-C96-coldstart"
+  - name: "LM4p2-C96-1850"
+  - name: "LM4p2-C96-LU"

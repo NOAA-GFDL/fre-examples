@@ -1,0 +1,53 @@
+compile:
+  experiment: "code"
+  container_addlibs:
+  baremetal_linkerflags:
+  src:
+    - component: "fms"
+      repo: !join [*GITHUB, "FMS.git"]
+      branch: *FMS_TAG
+      paths: ["FMS"]
+      cppdefs: *FLAGS_FMS
+    - component: "lm4p"
+      repo: !join [*GITLAB, "lm4p.git"]
+      branch: *LAND_TAG
+      paths: ["lm4p"]
+      requires: ["fms"]
+      doF90Cpp: True
+      cppdefs: *FLAGS_LAND
+    - component: "atmos_phys"
+      repo: !join [*GITLAB, "atmos_phys.git"]
+      branch: *ATMOS_PHYS_TAG
+      paths: ["atmos_phys/atmos_shared/atmos_cmip_diag"]
+      requires: ["fms", "lm4p"]
+      cppdefs: *FLAGS_FMS
+    - component: "ice_param"
+      repo: !join [*GITHUB, "ice_param.git"]
+      branch: *ICE_PARAM_TAG
+      paths: ["ice_param"]
+      requires: ["fms", "lm4p"]
+      cppdefs: *FLAGS_FMS
+    - component: "ocean_amip"
+      repo: !join [*GITLAB, "ocean_amip.git"]
+      branch: *OCEAN_AMIP_TAG
+      paths: ["ocean_amip"]
+      requires: ["fms", "lm4p"]
+      cppdefs: *FLAGS_FMS
+    - component: "ice_amip"
+      repo: !join [*GITLAB, "ice_amip.git"]
+      branch: *ICE_AMIP_TAG
+      paths: ["ice_amip"]
+      requires: ["fms", "lm4p", "ice_param", "ocean_amip"]
+      cppdefs: *FLAGS_FMS
+    - component: "atmos_solo_land"
+      repo: !join [*GITLAB, "atmos_solo_land.git"]
+      branch: *ATMOS_SOLO_LAND_TAG
+      paths: ["atmos_solo_land"]
+      requires: ["fms", "lm4p", "atmos_phys"]
+      cppdefs: *FLAGS_FMS
+    - component: "coupler"
+      repo: !join [*GITHUB, "FMScoupler.git"]
+      branch: *COUPLER_TAG
+      paths: ["FMScoupler/full", "FMScoupler/shared"]
+      requires: ["fms", "lm4p", "ice_param", "ocean_amip", "ice_amip", "atmos_phys", "atmos_solo_land"]
+      cppdefs: *FLAGS_FMS

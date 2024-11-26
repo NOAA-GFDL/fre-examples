@@ -1,0 +1,10 @@
+platforms:
+  - name: "ncrc5.intel23"
+    compiler: "intel-classic"
+    modulesInit: ["module use -a /ncrc/home2/fms/local/modulefiles_test", "source $MODULESHOME/init/sh"]
+    modules: ["intel-classic/2023.2.0", "cray-hdf/1.12.2.11", "cray-netcdf/4.9.0.13"]
+    RUNenv: ["setenv HDF5_DISABLE_VERSION_CHECK 2"]
+    mkTemplate: "/ncrc/home2/fms/local/opt/fre-commands/bronx-22/site/ncrc5/intel-classic.mk"
+    modelRoot: "${HOME}/fremake_canopy/land_test"
+    fc: "ftn"
+    cc: "cc"
