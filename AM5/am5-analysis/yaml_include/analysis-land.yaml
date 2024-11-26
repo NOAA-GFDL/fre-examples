@@ -1,7 +1,0 @@
-land:
-  components: ["land"]
-  cumulative: False
-  frequency: 'P1M'
-  product: 'ts'
-  script: 'analysis-land.sh'
-  install: 'install-analysis-land.sh'
