@@ -18,7 +18,17 @@ For post-processing, required yamls include:
 For analysis, required yamls include:
 
 - `[model].yaml`
-- `[analysis component].yaml` for each analysis component?
+- `[analysis component].yaml` for each analysis component
+
+## Yamls Contributed
+
+- [CEFI-regional-MOM6 Yamls](https://github.com/NOAA-GFDL/fre-examples/tree/update-readme/CEFI/CEFI-pp#cefi-regional-mom6-yamls)
+
+- To be added:
+
+	- [ ] SHiELD compile and pp yamls
+ 	- [ ] AM4 compile and pp yamls
+	- [ ] CM4 compile and pp yamls
 
 ## Contributing to YAML Development
 
@@ -38,13 +48,3 @@ These yamls can be used with FRE-cli tools.
 
 The model, compile, and platforms yaml will be used with `fre make` subtools:
 - [Build FMS model guide](https://noaa-gfdl.github.io/fre-cli/usage.html#guide)
-
-## Yamls Contributed
-
-- [CEFI-regional-MOM6 Yamls](https://github.com/NOAA-GFDL/fre-examples/tree/update-readme/CEFI/CEFI-pp#cefi-regional-mom6-yamls)
-
-- To be added:
-
-	- [ ] SHiELD compile and pp yamls
- 	- [ ] AM4 compile and pp yamls
-	- [ ] CM4 compile and pp yamls 
