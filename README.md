@@ -6,7 +6,7 @@ Yaml devlopment should always include a model yaml. One model yaml can be used f
 
 For compilation, required yamls include:
 
-- `[model].yaml
+- `[model].yaml`
 - `compile.yaml`
 - `platforms.yaml`
 
