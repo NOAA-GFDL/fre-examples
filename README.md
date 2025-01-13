@@ -41,12 +41,8 @@ The model, compile, and platforms yaml will be used with `fre make` subtools:
 
 ## Yamls Contributed
 
-- ### CEFI-regional-MOM6 Yamls
+- [CEFI-regional-MOM6 Yamls](https://github.com/NOAA-GFDL/fre-examples/tree/update-readme/CEFI/CEFI-pp#cefi-regional-mom6-yamls)
 
-	This folder contains pp yamls that can be used to post process output from the CEFI-regional-MOM6 model using the latest versions of fre. 
-
-	In order to find the latest versions of the yamls, as well as compile and platform yamls that can be used to compile the model and create a container to run the model in, please check the [yamls folder](https://github.com/NOAA-GFDL/CEFI-regional-MOM6/tree/main/yamls/NWA12) of the main repo.
-
-- ### To be added:
+- To be added:
 
 	- [ ] SHiELD compile and pp yamls
