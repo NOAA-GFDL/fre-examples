@@ -46,3 +46,5 @@ The model, compile, and platforms yaml will be used with `fre make` subtools:
 - To be added:
 
 	- [ ] SHiELD compile and pp yamls
+ 	- [ ] AM4 compile and pp yamls
+	- [ ] CM4 compile and pp yamls 
