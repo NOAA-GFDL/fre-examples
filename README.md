@@ -1,6 +1,6 @@
 # fre-examples
 
-This repository holds public facing example yaml configurations. These yamls can include configurations for copmilation, post-processing, and analysis.
+This repository holds public facing example yaml configurations. These yamls can include configurations for compilation, post-processing, and analysis.
 
 Yaml devlopment should always include a model yaml. One model yaml can be used for all processes.
 
