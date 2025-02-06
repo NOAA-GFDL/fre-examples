@@ -10,4 +10,4 @@ fre_properties:
 build:
   # compile information
   compileYaml:  "compile.yaml"
-  platformYaml: "platforms.yaml"
+  platformYaml: "../../platforms.yaml"
