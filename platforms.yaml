@@ -32,7 +32,5 @@ platforms:
    - name: amd.inteloneapi
      compiler: intel
      modules: [ oneapi/2024.2,compiler/2024.2.0,mpi,netcdf/4.9.2,hdf5/1.14.5,libyaml/0.2.5]
-     fc: mpiifx
-     cc: mpiicx
      mkTemplate: /home/Lauren.Chilutti/mkmf/templates/amd-intel-oneapi.mk
      modelRoot: ${HOME}/fremake_2025/test
