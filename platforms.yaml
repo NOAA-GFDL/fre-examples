@@ -20,7 +20,7 @@ platforms:
      modelRoot: ${TEST_BUILD_DIR}/fremake_2025/test
    - name: hpcme.gaea.intel24
      compiler: intel
-     RUNenv: []
+     RUNenv: ""
      modelRoot: /apps
      container: True
      containerBuild: "podman"
