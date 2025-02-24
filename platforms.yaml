@@ -18,17 +18,17 @@ platforms:
      compiler: gnu
      mkTemplate: /__w/fre-cli/fre-cli/mkmf/templates/linux-ubuntu-xenial-gnu.mk
      modelRoot: ${TEST_BUILD_DIR}/fremake_2025/test
-   - name: con.twostep
+   - name: hpcme.gaea.intel24
      compiler: intel
-     RUNenv: [". /spack/share/spack/setup-env.sh", "spack load libyaml", "spack load netcdf-fortran@4.5.4", "spack load hdf5@1.14.0"]
+     RUNenv: []
      modelRoot: /apps
      container: True
      containerBuild: "podman"
      containerRun: "apptainer"
-     containerBase: "ecpe4s/noaa-intel-prototype:2023.09.25"
-     mkTemplate: "/apps/mkmf/templates/hpcme-intel21.mk"
+     containerBase: "docker-archive:/gpfs/f5/gfdl_f/world-shared/frecontainers/hpc-me_intel2024.2.tar"
+     mkTemplate: "/apps/mkmf/templates/hpcme-intel24.mk"
      container2step: True
-     container2base: "ecpe4s/noaa-intel-prototype:2023.09.25"
+     container2base: "docker-archive:/gpfs/f5/gfdl_f/world-shared/frecontainers/hpc-me_intel2024.2rte.tar"
    - name: amd.inteloneapi
      compiler: intel
      modules: [ oneapi/2024.2,compiler/2024.2.0,mpi,netcdf/4.9.2,hdf5/1.14.5,libyaml/0.2.5]
