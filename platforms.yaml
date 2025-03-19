@@ -29,6 +29,17 @@ platforms:
      mkTemplate: "/apps/mkmf/templates/hpcme-intel24.mk"
      container2step: True
      container2base: "docker-archive:/gpfs/f5/gfdl_f/world-shared/frecontainers/hpc-me_intel2024.2rte.tar"
+   - name: hpcme.intel25
+     compiler: intel
+     RUNenv: [". /opt/spack/share/spack/setup-env.sh", "cd /opt/spack-environment/", "spack --verbose env activate ."]
+     modelRoot: /apps
+     container: True
+     containerBuild: "podman"
+     containerRun: "apptainer"
+     containerBase: "gitlab.gfdl.noaa.gov:5050/fre/hpc-me/base-ubuntu24.04-intel:2025"
+     mkTemplate: "/apps/mkmf/templates/hpcme-intel25-oneapi.mk"
+     container2step: True
+     container2base: "gitlab.gfdl.noaa.gov:5050/fre/hpc-me/base-ubuntu24.04-intel:2025rte"
    - name: amd.inteloneapi
      compiler: intel
      modules: [ oneapi/2024.2,compiler/2024.2.0,mpi,netcdf/4.9.2,hdf5/1.14.5,libyaml/0.2.5]

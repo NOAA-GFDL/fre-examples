@@ -4,11 +4,13 @@ fre_properties:
   - &FRE_STEM          !join [SHiELD/, *SHiELD_VERSION]
   - &fv3_release       main
   - &phy_release       main
-  - &fms_release       "2023.02"
+  - &fms_release       "2025.01"
   - &drivers_release   main
-  - &coupler_release   "2023.02"
+  - &coupler_release   "2025.01"
   - &FMSincludes       "-IFMS/fms2_io/include -IFMS/include -IFMS/mpp/include"
   - &momIncludes       "-Imom6/MOM6-examples/src/MOM6/pkg/CVMix-src/include"
+  - &containerLIBS     ["bacio","sp","w3emc","w3nco"]
+  - &baremetalLIBS     ["-L/gpfs/f5/gfdl_f/world-shared/Lauren.Chilutti/nceplibs/intel -lbacio  -lsp_d  -lw3emc_d  -lw3nco_d"]
   - &INTEL             "intel-classic"
 
 # compile information
