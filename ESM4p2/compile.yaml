@@ -44,43 +44,42 @@ compile:
                    "https://github.com/NOAA-GFDL/ocean_BGC.git" ]
             branch: [ "dev/gfdl", *OCEAN_BGC_GIT_TAG ] # cant use property for mom6 since its a commit hash instead of a branch
             otherFlags: !join [ *FMSincludes, " ", *MOMincludes ]
-            additionalInstructions: |
-              pushd mom6/MOM6-examples
-              git checkout 40e3937 # this is just the value of MOM6_GIT_TAG property, can't seem to use variable 
-              popd
-              # this step might be covered by initial checkout since the default is recursive
-              git submodule update --recursive --init mom6/MOM6-examples/src/MOM6 mom6/MOM6-examples/src/SIS2 mom6/MOM6-examples/src/icebergs
-              # checkout dev/gfdl on the icebergs submodule
-              pushd mom6/MOM6-examples/src/icebergs
-              git checkout dev/gfdl
-              popd
-              # this is different than the MOM6_GIT_TAG above since its pulling a submodule not the whole repo
-              if [[ $MOM6_GIT_FIX ]]; then
-                echo WARNING: Checking out MOM6_GIT_FIX, set to: $MOM6_GIT_FIX
-                pushd mom6/MOM6-examples/src/MOM6/
-                git checkout $MOM6_GIT_FIX
-                popd
-              fi 
-              if [[ $SIS2_GIT_FIX ]]; then
-                echo WARNING: Checking out SIS2_GIT_FIX, set to: $SIS2_GIT_FIX 
-                pushd mom6/MOM6-examples/src/SIS2/
-                git checkout $SIS2_GIT_FIX
-                popd
-              fi
-              # link in dataset
-              pushd mom6/MOM6-examples
-              # skip the check for orion
-              #set platform_domain = `perl -T -e "use Net::Domain(hostdomain) ; print hostdomain"`
-              #if ("${platform_domain}" =~ *"MsState"* ) then
-              #  ln -s /work/noaa/gfdlscr/pdata/gfdl/gfdl_O/datasets/ .datasets
-              #else
-                ln -s /gpfs/f5/gfdl_o/world-shared/datasets .datasets
-              #endif
-              popd  
-              test -e mom6/.datasets
-              if [[ $status != 0 ]]; then
-                echo ""; echo "" ; echo "   WARNING:  .datasets link in MOM6 examples directory is invalid"; echo ""; echo ""
-              fi 
+            additionalInstructions: !join ["pushd mom6/MOM6-examples \n",
+                                           "git checkout", *MOM6_GIT_TAG, "\n",
+                                           "popd \n",
+                                           # this step might be covered by initial checkout since the default is recursive
+                                           "git submodule update --recursive --init mom6/MOM6-examples/src/MOM6 mom6/MOM6-examples/src/SIS2 mom6/MOM6-examples/src/icebergs \n",
+                                           # checkout dev/gfdl on the icebergs submodule
+                                           "pushd mom6/MOM6-examples/src/icebergs \n",
+                                           "git checkout dev/gfdl \n",
+                                           "popd \n",
+                                           # this is different than the MOM6_GIT_TAG above since its pulling a submodule not the whole repo
+                                           "if [[ $MOM6_GIT_FIX ]]; then \n",
+                                           "    echo WARNING: Checking out MOM6_GIT_FIX, set to: $MOM6_GIT_FIX \n",
+                                           "    pushd mom6/MOM6-examples/src/MOM6/ \n",
+                                           "    git checkout $MOM6_GIT_FIX \n",
+                                           "    popd \n",
+                                           "fi \n",
+                                           "if [[ $SIS2_GIT_FIX ]]; then \n",
+                                           "    echo WARNING: Checking out SIS2_GIT_FIX, set to: $SIS2_GIT_FIX \n",
+                                           "    pushd mom6/MOM6-examples/src/SIS2/ \n",
+                                           "    git checkout $SIS2_GIT_FIX \n",
+                                           "    popd \n",
+                                           "fi \n",
+                                           # link in dataset
+                                           "pushd mom6/MOM6-examples\n",
+                                           # skip the check for orion
+                                           #set platform_domain = `perl -T -e "use Net::Domain(hostdomain) ; print hostdomain"`
+                                           #if ("${platform_domain}" =~ *"MsState"* ) then
+                                           #  ln -s /work/noaa/gfdlscr/pdata/gfdl/gfdl_O/datasets/ .datasets
+                                           #else
+                                           "ln -s /gpfs/f5/gfdl_o/world-shared/datasets .datasets \n",
+                                           #endif
+                                           "popd \n",
+                                           "test -e mom6/.datasets \n",
+                                           "if [[ $status != 0 ]]; then \n",
+                                           '    echo ""; echo "" ; echo "   WARNING:  .datasets link in MOM6 examples directory is invalid"; echo ""; echo "" \n',
+                                           "fi"]
             cppdefs: "-DMAX_FIELDS_=100 -DNOT_SET_AFFINITY -D_USE_MOM6_DIAG -D_USE_GENERIC_TRACER  -DUSE_PRECISION=2"
             paths: [ "mom6/MOM6-examples/src/MOM6/config_src/infra/FMS2",
                      "mom6/MOM6-examples/src/MOM6/config_src/memory/dynamic_symmetric",
