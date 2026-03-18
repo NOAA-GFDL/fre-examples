@@ -6,6 +6,9 @@ directories:
   fre_analysis_home: "/home/fms/local/opt/fre-analysis/test"
 
 postprocess:
+  workflow:
+    repository: "https://github.com/NOAA-GFDL/fre-workflows"
+    version: "2026.01-alpha1"
   settings:
     history_segment:    "P1Y"
     site:               "ppan"
