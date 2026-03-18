@@ -50,37 +50,16 @@ build:
   compileYaml: "compile.yaml"
   platformYaml: "../platforms.yaml"
 
-shared:
-  # directories shared across tools
-  # shamelessly stolen from am5 example
-  directories: &shared_directories
-    history_dir:  !join [/archive/$USER/, *FRE_STEM, /, *name, /, *platform, -, *target, /, history]
-    pp_dir:       !join [/archive/$USER/, *FRE_STEM, /, *name, /, *platform, -, *target, /, pp]
-    analysis_dir: !join [/nbhome/$USER/, *FRE_STEM, /, *name]
-    ptmp_dir:     "/xtmp/$USER/ptmp"
-    fre_analysis_home: "/home/fms/local/opt/fre-analysis/test"
-
-  # shared pp settings
-  # also shamelessly stolen from am5 example
-  postprocess: 
-    settings: &shared_settings
-      history_segment:    "P1Y"
-      site:               "ppan"
-    switches: &shared_switches
-      do_statics:         True
-      do_timeavgs:        True
-      clean_work:         True
-      do_refinediag:      False
-      do_atmos_plevel_masking: True
-      do_preanalysis:     False
-      do_analysis:        True
-
 experiments:
   - name: "ESM4p2_piControl_spinup_J"
+    settings: "settings.yaml"
     pp:
   - name: "ESM4p2_piControl_spinup_Jb"
+    settings: "settings.yaml"
     pp:
   - name: "ESM4p2_piControl_spinup_J_redoyr450_btmdiags"
+    settings: "settings.yaml"
     pp:
   - name: "ESM4p2_piControl_spinup_J_redoyr450"
+    settings: "settings.yaml"
     pp:
