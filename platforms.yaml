@@ -32,19 +32,20 @@ platforms:
 #     containerBase: "ecpe4s/noaa-intel-prototype:2023.09.25" 
 #     mkTemplate: "/apps/mkmf/templates/hpcme-intel21.mk"
 
-   # Shareable: does not include the intel libary in final image
-   # includes intel23 --> supports ifort (not ifx)     
-   - name: hpcme.intel23
-     compiler: intel
-     RUNenv: ""
-     modelRoot: /apps
-     container: True
-     containerBuild: "podman"
-     containerRun: "apptainer"
-     containerBase: "gitlab.gfdl.noaa.gov:5050/fre/hpc-me/base-ubuntu24.04-intel:2023"
-     mkTemplate: "/apps/mkmf/templates/hpcme-intel23.mk"
-     container2step: True
-     container2base: "gitlab.gfdl.noaa.gov:5050/fre/hpc-me/base-ubuntu24.04-intel:2023rte"
+### THIS MIGHT NOT EXIST ANYMORE (to-do: check)
+#   # Shareable: does not include the intel libary in final image
+#   # includes intel23 --> supports ifort (not ifx)     
+#   - name: hpcme.intel23
+#     compiler: intel
+#     RUNenv: ""
+#     modelRoot: /apps
+#     container: True
+#     containerBuild: "podman"
+#     containerRun: "apptainer"
+#     containerBase: "gitlab.gfdl.noaa.gov:5050/fre/hpc-me/base-ubuntu24.04-intel:2023"
+#     mkTemplate: "/apps/mkmf/templates/hpcme-intel23.mk"
+#     container2step: True
+#     container2base: "gitlab.gfdl.noaa.gov:5050/fre/hpc-me/base-ubuntu24.04-intel:2023rte"
 
    # Shareable: does not include the intel libary in final image
    # includes intel24 --> supports ifx (ifort no longer suppported in intel24 and above)
