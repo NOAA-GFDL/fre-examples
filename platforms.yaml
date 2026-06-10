@@ -21,17 +21,6 @@ platforms:
      modelRoot: ${HOME}/fremake_2025/c6_test
 
    ## CONTAINER PLATFORMS ##
-#   # Not shareable: includes the intel libary in final image
-#   - name: hpcme.2023
-#     compiler: intel
-#     RUNenv: [". /spack/share/spack/setup-env.sh", "spack load libyaml", "spack load netcdf-fortran@4.5.4", "spack load hdf5@1.14.0"]
-#     modelRoot: /apps
-#     container: True
-#     containerBuild: "podman"
-#     containerRun: "apptainer" 
-#     containerBase: "ecpe4s/noaa-intel-prototype:2023.09.25" 
-#     mkTemplate: "/apps/mkmf/templates/hpcme-intel21.mk"
-
 ### THIS MIGHT NOT EXIST ANYMORE (to-do: check)
 #   # Shareable: does not include the intel libary in final image
 #   # includes intel23 --> supports ifort (not ifx)     
