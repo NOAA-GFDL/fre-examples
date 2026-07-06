@@ -21,34 +21,20 @@ platforms:
      modelRoot: ${HOME}/fremake_2025/c6_test
 
    ## CONTAINER PLATFORMS ##
-### THIS MIGHT NOT EXIST ANYMORE (to-do: check)
-#   # Shareable: does not include the intel libary in final image
-#   # includes intel23 --> supports ifort (not ifx)     
-#   - name: hpcme.intel23
+   # Shareable: does not include the intel libary in final image
+   # includes intel24 --> supports ifx (ifort no longer suppported in intel24 and above)
+# MIGHT NOT BE AVAILABLE 
+#   - name: hpcme.gaea.intel24
 #     compiler: intel
 #     RUNenv: ""
 #     modelRoot: /apps
 #     container: True
 #     containerBuild: "podman"
 #     containerRun: "apptainer"
-#     containerBase: "gitlab.gfdl.noaa.gov:5050/fre/hpc-me/base-ubuntu24.04-intel:2023"
-#     mkTemplate: "/apps/mkmf/templates/hpcme-intel23.mk"
+#     containerBase: "docker-archive:/gpfs/f5/gfdl_f/world-shared/HPC-ME/base-ubuntu24.04-intel_2024.tar" 
+#     mkTemplate: "/apps/mkmf/templates/hpcme-intel24.mk"
 #     container2step: True
-#     container2base: "gitlab.gfdl.noaa.gov:5050/fre/hpc-me/base-ubuntu24.04-intel:2023rte"
-
-   # Shareable: does not include the intel libary in final image
-   # includes intel24 --> supports ifx (ifort no longer suppported in intel24 and above)
-   - name: hpcme.gaea.intel24
-     compiler: intel
-     RUNenv: ""
-     modelRoot: /apps
-     container: True
-     containerBuild: "podman"
-     containerRun: "apptainer"
-     containerBase: "docker-archive:/gpfs/f5/gfdl_f/world-shared/HPC-ME/base-ubuntu24.04-intel_2024.tar" 
-     mkTemplate: "/apps/mkmf/templates/hpcme-intel24.mk"
-     container2step: True
-     container2base: "docker-archive:/gpfs/f5/gfdl_f/world-shared/HPC-ME/base-ubuntu24.04-intel_2024rte.tar"
+#     container2base: "docker-archive:/gpfs/f5/gfdl_f/world-shared/HPC-ME/base-ubuntu24.04-intel_2024rte.tar"
 
    # Shareable: does not include the intel libary in final image
    # includes intel25 --> supports ifx (ifort no longer suppported in intel24 and above)
@@ -63,16 +49,16 @@ platforms:
      mkTemplate: "/apps/mkmf/templates/hpcme-intel2025.03-oneapi.mk"
      container2step: True
      container2base: "gitlab.gfdl.noaa.gov:5050/fre/hpc-me/base-ubuntu24.04-intel:2025.3rte"
-     volume: *VOLUME
+     volume: "/gpfs/f5" # or /gpfs/f6 depending on where you are working
 
 
-     ## USED IN FRE-CLI TESTING ##
+     #### USED IN FRE-CLI TESTING ####
    - name: ci.gnu
      compiler: gnu
      mkTemplate: /__w/fre-cli/fre-cli/mkmf/templates/linux-ubuntu-xenial-gnu.mk
      modelRoot: ${TEST_BUILD_DIR}/fremake_2025/test
      
-     ## AMD ##
+     #### AMD ####
    - name: amd.inteloneapi
      compiler: intel
      envSetup: ["module load oneapi/2024.2",
