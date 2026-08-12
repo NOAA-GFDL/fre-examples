@@ -1,0 +1,114 @@
+fre_properties:
+  INPUT_DATA_WIP: "/gpfs/f5/gfdl_w/world-shared/SHiELD_INPUT_DATA_WIP/"
+  INPUT_DATA: "/gpfs/f5/gfdl_w/world-shared/SHiELD_INPUT_DATA/"
+
+input:
+  datasets:
+    MERRA2_2015_2023__C1152:
+      - label: input
+        source: "{{ fre_properties.INPUT_DATA }}/MERRA2_2015_2023_new/C1152/*.nc"
+        chksum: ''
+        timestamp: '' 
+        platform: ''
+#        target: INPUT/[filename].nc  ##I feel like this wouldn't be necessary if we specify label and source
+#        actually jk it might be needed for if label is something like fieldYaml and target is INPUT? idk
+    MERRA2_2015_2023__C192:
+      - label: input
+        source: "{{ fre_properties.INPUT_DATA_WIP }}/MERRA2_2015_2023_new/C192/*.nc"
+        chksum: ''
+        timestamp: ''
+        platform: ''
+
+    MERRA2_2015_2023__C384:
+      - label: input
+        source: "{{ fre_properties.INPUT_DATA_WIP }}/MERRA2_2015_2023_new/C384/*.nc"
+        chksum: ''
+        timestamp: ''
+        platform: ''
+
+    MERRA2_2015_2023__C768:
+      - label: input
+        source: "{{ fre_properties.INPUT_DATA_WIP }}/MERRA2_2015_2023_new/C768/*.nc"
+        chksum: ''
+        timestamp: ''
+        platform: ''
+
+    MERRA2_2015_2023__C768_2N3_1:
+      - label: input
+        source: "{{ fre_properties.INPUT_DATA_WIP }}/MERRA2_2015_2023_new/C768_2N3_1/*.nc"
+        chksum: ''
+        timestamp: ''
+        platform: ''
+
+    MERRA2_2015_2023__C768n5r10:
+      - label: input
+        source: "{{ fre_properties.INPUT_DATA_WIP }}/MERRA2_2015_2023_new/C768n5r10/*.nc"
+        chksum: ''
+        timestamp: ''
+        platform: ''
+
+    MERRA2_2015_2023__C1536:
+      - label: input
+        source: "{{ fre_properties.INPUT_DATA_WIP }}/MERRA2_2015_2023_new/C1536/*.nc"
+        chksum: ''
+        timestamp: ''
+        platform: ''
+
+    MERRA2_2015_2023__C3072:
+      - label: input
+        source: "{{ fre_properties.INPUT_DATA_WIP }}/MERRA2_2015_2023_new/C3072/*.nc"
+        chksum: ''
+        timestamp: ''
+        platform: ''
+
+    MERRA2_2015_2023__C48:
+      - label: input
+        source: "{{ fre_properties.INPUT_DATA_WIP }}/MERRA2_2015_2023_new/C48/*.nc"
+        chksum: ''
+        timestamp: ''
+        platform: ''
+
+    MERRA2_2015_2023__C768_2n3:
+      - label: input
+        source: "{{ fre_properties.INPUT_DATA_WIP }}/MERRA2_2015_2023_new/C768_2n3/*.nc"
+        chksum: ''
+        timestamp: ''
+        platform: ''
+
+    MERRA2_2015_2023__C768_2n3_NEC:
+      - label: input
+        source: "{{ fre_properties.INPUT_DATA_WIP }}/MERRA2_2015_2023_new/C768_2n3_NEC/*.nc"
+        chksum: ''
+        timestamp: ''
+        platform: ''
+
+    MERRA2_2015_2023__C96:
+      - label: input
+        source: "{{ fre_properties.INPUT_DATA_WIP }}/MERRA2_2015_2023_new/C96/*.nc"
+        chksum: ''
+        timestamp: ''
+        platform: ''
+
+    #### should we do each folder in there?
+    climo_data:
+      - label: input
+        source: "{{ fre_properties.INPUT_DATA_WIP }}/climo_data.v201807/"
+        chksum: ''
+        timestamp: ''
+        platform: ''
+
+    #### should we do each folder in there?
+    ICS:
+      - label: input
+        source: "{{ fre_properties.INPUT_DATA }}/global.v201810/C48/${DATE}_IC"
+        chksum: ''
+        timestamp: ''
+        platform: ''
+
+    #### should we do each folder in there?
+    emc.glopara:
+      - label: input
+        source: "{{ fre_properties.INPUT_DATA }}/emc.glopara/fix.v20231023/am/20220805/"
+        chksum: ''
+        timestamp: ''
+        platform: ''
