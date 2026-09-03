@@ -1,29 +1,47 @@
 # reusable variables
 fre_properties:
-  - &SHiELD_VERSION    "shield_nh"
-  - &FRE_STEM          !join [SHiELD/, *SHiELD_VERSION]
-  - &fv3_release       main
-  - &phy_release       main
-  - &fms_release       "2023.02"
-  - &drivers_release   main
-  - &coupler_release   "2023.02"
-  - &FMSincludes       "-IFMS/fms2_io/include -IFMS/include -IFMS/mpp/include"
-  - &momIncludes       "-Imom6/MOM6-examples/src/MOM6/pkg/CVMix-src/include"
-  - &INTEL             "intel-classic"
+  SHiELD_VERSION: "shield_nh"
+  FRE_STEM: "SHiELD/{{ fre_properties.SHiELD_VERSION }}"
+  fv3_release: "main"
+  phy_release: "main"
+  fms_release: "2023.02"
+  drivers_release: "main"
+  coupler_release: "2023.02"
+  FMSincludes: "-IFMS/fms2_io/include -IFMS/include -IFMS/mpp/include"
+  momIncludes: "-Imom6/MOM6-examples/src/MOM6/pkg/CVMix-src/include"
+  INTEL: "intel-classic"
 
 # compile information
 build:
   platformYaml: "../../platforms.yaml"
   compileYaml: "compile.yaml"
 
-shared:
-  # directories shared across tools
-  directories: &shared_directories
-    history_dir:  !join [/archive/$USER/, *FRE_STEM, /, *name, /, *platform, -, *target, /, history]
-    pp_dir:       !join [/archive/$USER/, *FRE_STEM, /, *name, /, *platform, -, *target, /, pp]
-    analysis_dir: !join [/nbhome/$USER/, *FRE_STEM, /, *name]
-    ptmp_dir:     "/xtmp/$USER/ptmp"
-
 experiments:
-  - name:
-    pp:
+  shield:
+    settings: "SHieLD_settings.yaml"
+    run:
+      - "run/layouts.yaml"
+      - "run/input_datasets.yaml"
+      - "run/RUN_SHiELD_rt2022_C768_cpsd_GFSv16.yaml"
+    postprocess:
+  shield24:
+    settings: "shield24_settings.yaml"
+    run:
+      - "run/layouts.yaml"
+      - "run/input_datasets.yaml"
+      - "run/RUN_SHiELD_rt2024_C1536_aero_GFSv16.yaml"
+    postprocess:
+  cshield25:
+    settings: "cshield25_settings.yaml"
+    run:
+      - "run/layouts.yaml"
+      - "run/input_datasets.yaml"
+      - "run/RUN_C-SHiELD_rt2025.yaml"
+    postprocess:
+  t-shield:
+    settings: "tshield_settings.yaml"
+    run:
+      - "run/layouts.yaml"
+      - "run/input_datasets.yaml"
+      - "run/RUN_T_SHIELD_K24dv1.yaml"
+    postprocess:
