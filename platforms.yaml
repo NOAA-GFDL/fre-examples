@@ -3,6 +3,7 @@ platforms:
      compiler: intel
      envSetup: ["module use -a /ncrc/home2/fms/local/modulefiles",
                 "source $MODULESHOME/init/sh",
+                "module load PrgEnv-intel/8.6.0",
                 !join ["module load ", *INTEL, "/2023.2.0"],
                 "module load cray-hdf5/1.12.2.11",
                 "module load cray-netcdf/4.9.0.11"]
@@ -13,6 +14,7 @@ platforms:
      compiler: intel
      envSetup: ["module use -a /ncrc/home2/fms/local/modulefiles",
                 "source $MODULESHOME/init/sh",
+                "module load PrgEnv-intel/8.6.0",
                 !join ["module load ", *INTEL, "/2023.2.0"],
                 "module load cray-hdf5/1.12.2.11",
                 "module load cray-netcdf",
@@ -25,6 +27,7 @@ platforms:
      envSetup: ["source $MODULESHOME/init/sh",
                 "source /sw/gaea-c7/init/load_cpe.sh",
                 "source /sw/gaea-c7/lmod-cpe/etc/profile",
+                "module load PrgEnv-intel/8.6.0",
                 !join ["module load ", *INTEL, "/2025.2"],
                 "module load cray-hdf5/1.14.3.7",
                 "module load cray-netcdf/4.9.2.1",
