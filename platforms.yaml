@@ -5,7 +5,8 @@ platforms:
                 "source $MODULESHOME/init/sh",
                 !join ["module load ", *INTEL, "/2023.2.0"],
                 "module load cray-hdf5/1.12.2.11",
-                "module load cray-netcdf/4.9.0.11"]
+                "module load cray-netcdf/4.9.0.11",
+                "module unload cray-libsci/25.03.0"]
      mkTemplate: !join ["/ncrc/home2/fms/local/opt/fre-commands/bronx-20/site/ncrc5/", *INTEL, ".mk"]
      modelRoot: ${HOME}/fremake_2025/c5_test
    

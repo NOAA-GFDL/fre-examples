@@ -4,9 +4,13 @@ fre_properties:
   - &FRE_STEM          !join [SHiELD/, *SHiELD_VERSION]
   - &fv3_release       main
   - &phy_release       main
-  - &fms_release       "2025.01"
+  - &fms_release       "2026.02"
   - &drivers_release   main
-  - &coupler_release   "2025.01"
+  - &coupler_release   "2026.02"
+  - &oceannull_release main 
+  - &icenull_release   main
+  - &iceparam_release  main 
+  - &landnull_release  main
   - &FMSincludes       "-IFMS/fms2_io/include -IFMS/include -IFMS/mpp/include"
   - &momIncludes       "-Imom6/MOM6-examples/src/MOM6/pkg/CVMix-src/include"
   - &containerLIBS     ["bacio","sp","w3emc","w3nco"]
@@ -17,14 +21,6 @@ fre_properties:
 build:
   platformYaml: "../../platforms.yaml"
   compileYaml: "compile.yaml"
-
-shared:
-  # directories shared across tools
-  directories: &shared_directories
-    history_dir:  !join [/archive/$USER/, *FRE_STEM, /, *name, /, *platform, -, *target, /, history]
-    pp_dir:       !join [/archive/$USER/, *FRE_STEM, /, *name, /, *platform, -, *target, /, pp]
-    analysis_dir: !join [/nbhome/$USER/, *FRE_STEM, /, *name]
-    ptmp_dir:     "/xtmp/$USER/ptmp"
 
 experiments:
   - name:
