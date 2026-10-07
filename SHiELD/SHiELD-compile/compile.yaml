@@ -44,4 +44,4 @@ compile:
                     driver/atmos_drivers/SHiELD/,
                     driver/FMScoupler/full/,
                     driver/FMScoupler/shared/]
-            otherFlags: !join [*FMSincludes, " -I/ncrc/home1/Vithika.Shah/SHiELD_dev/SHiELD_SRC//GFDL_atmos_cubed_sphere/driver/SHiELD/include"]
+            otherFlags: *FMSincludes
