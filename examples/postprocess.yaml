@@ -1,0 +1,32 @@
+fre_properties: 
+  custom_interp: "180,360"
+
+postprocess:
+  # main pp instructions
+  components:
+    atmos_cmip:
+      sources:
+        - history_file: "atmos_month_cmip" 
+        - history_file: "atmos_8xdaily_cmip" 
+        - history_file: "atmos_daily_cmip"
+      sourceGrid: "cubedsphere"
+      xyInterp: "{{ fre_properties.custom_interp }}"
+      interpMethod: "conserve_order2"
+      inputRealm: 'atmos'
+    atmos:
+      sources:
+        - history_file: "atmos_month"
+      sourceGrid: "cubedsphere"
+      xyInterp: "{{ fre_properties.PP_XYINTERP96 }}"
+      interpMethod: "conserve_order2"
+      inputRealm: 'atmos'
+    atmos_diurnal:
+      sources:
+        - history_file: "atmos_diurnal"
+      sourceGrid: "cubedsphere"
+      xyInterp: "{{ fre_properties.PP_XYINTERP96 }}"
+      interpMethod: "conserve_order2"
+      inputRealm: 'atmos'
+    atmos_scalar:
+      sources:
+        - history_file: "atmos_scalar"
