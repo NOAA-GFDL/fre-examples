@@ -3,22 +3,22 @@ platforms:
      compiler: intel
      envSetup: ["module use -a /ncrc/home2/fms/local/modulefiles",
                 "source $MODULESHOME/init/sh",
-                !join ["module load ", *INTEL, "/2023.2.0"],
+                "module load {{ fre_properties.INTEL }}/2023.2.0",
                 "module load cray-hdf5/1.12.2.11",
                 "module load cray-netcdf/4.9.0.11",
                 "module unload cray-libsci/25.03.0"]
-     mkTemplate: !join ["/ncrc/home2/fms/local/opt/fre-commands/bronx-20/site/ncrc5/", *INTEL, ".mk"]
+     mkTemplate: "/ncrc/home2/fms/local/opt/fre-commands/bronx-20/site/ncrc5/{{ fre_properties.INTEL }}.mk"
      modelRoot: ${HOME}/fremake_2025/c5_test
    
    - name: ncrc6.intel23
      compiler: intel
      envSetup: ["module use -a /ncrc/home2/fms/local/modulefiles",
                 "source $MODULESHOME/init/sh",
-                !join ["module load ", *INTEL, "/2023.2.0"],
+                "module load {{ fre_properties.INTEL }}/2023.2.0",
                 "module load cray-hdf5/1.12.2.11",
                 "module load cray-netcdf",
                 "module load cray-libsci/24.07.0"]
-     mkTemplate: !join ["/ncrc/home2/fms/local/opt/fre-commands/bronx-23/site/ncrc6/", *INTEL, ".mk"]
+     mkTemplate: "/ncrc/home2/fms/local/opt/fre-commands/bronx-23/site/ncrc6/{{ fre_properties.INTEL }}.mk"
      modelRoot: ${HOME}/fremake_2025/c6_test
 
    - name: ncrc7.intel25
@@ -26,14 +26,14 @@ platforms:
      envSetup: ["source $MODULESHOME/init/sh",
                 "source /sw/gaea-c7/init/load_cpe.sh",
                 "source /sw/gaea-c7/lmod-cpe/etc/profile",
-                !join ["module load ", *INTEL, "/2025.2"],
+                "module load {{ fre_properties.INTEL }}/2025.2",
                 "module load cray-hdf5/1.14.3.7",
                 "module load cray-netcdf/4.9.2.1",
                 "module unload cray-libsci",
                 "module use -a /ncrc/home2/fms/local/modulefiles",
                 "module load fre/2026.01"]
-     mkTemplate: !join ["/ncrc/home2/fms/local/opt/fre-commands/bronx-23/site/ncrc7/", *INTEL, ".mk"]
-     modelRoot: !join ["/gpfs/f7/", *GFDL_GROUP, "/scratch/${USER}/", *FRE_STEM]
+     mkTemplate: "/ncrc/home2/fms/local/opt/fre-commands/bronx-23/site/ncrc7/{{ fre_properties.INTEL }}.mk"
+     modelRoot: "/gpfs/f7/{{ fre_properties.GFDL_GROUP }}/scratch/${USER}/{{ fre_properties.FRE_STEM }}"
 
    ## CONTAINER PLATFORMS ##
    # Shareable: does not include the intel libary in final image
@@ -60,11 +60,11 @@ platforms:
      container: True
      containerBuild: "podman"
      containerRun: "apptainer"
-     containerBase: "gitlab.gfdl.noaa.gov:5050/fre/hpc-me/base-ubuntu24.04-intel:2025.3"
+     containerBase: "gitlab-registry.gfdl.noaa.gov:443/fre/hpc-me/base-ubuntu24.04-intel:2025.3"
      mkTemplate: "/apps/mkmf/templates/hpcme-intel2025.03-oneapi.mk"
      container2step: True
-     container2base: "gitlab.gfdl.noaa.gov:5050/fre/hpc-me/base-ubuntu24.04-intel:2025.3rte"
-     volume: "/gpfs/f5" # or /gpfs/f6 depending on where you are working
+     container2base: "gitlab-registry.gfdl.noaa.gov:443/fre/hpc-me/base-ubuntu24.04-intel:2025.3rte"
+     volume: "{{ fre_properties.VOLUME }}" # or /gpfs/f6 depending on where you are working
 
 
      #### USED IN FRE-CLI TESTING ####
