@@ -11,7 +11,8 @@ This folder contains up-to-date YAML files currently used in FRE. These YAMLs in
 # Quickstart
 **Assumptions:**
 - code blocks below assume you are running from this `examples` folder.
-- users can load any version of FRE; the code blocks below use the latest development of the `fre-cli` and `fre-postprocess-workflow` repositories. 
+- code blocks below use the latest development of the `fre-cli` and `fre-postprocess-workflow` repositories (fre/test module)
+- users can load any version of FRE, but make sure to update the `fre_cli_version` key in the `model.yaml` 
 
 ## Compile
 For the compilation, a null model will be built. 
