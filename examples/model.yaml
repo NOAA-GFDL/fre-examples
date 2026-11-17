@@ -30,7 +30,7 @@ build:
   platformYaml: "../platforms.yaml"
 
 experiments:
-  null_model_full:
+  experiment1:
     settings: "settings.yaml"
     postprocess:
       - "postprocess.yaml"

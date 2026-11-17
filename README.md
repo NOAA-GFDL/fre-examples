@@ -22,11 +22,12 @@ For analysis, required yamls include:
 
 ## Yamls Contributed
 
-- [CEFI-regional-MOM6 Yamls](https://github.com/NOAA-GFDL/fre-examples/tree/update-readme/CEFI/CEFI-pp#cefi-regional-mom6-yamls)
+- [CEFI-regional-MOM6 YAMLs](https://github.com/NOAA-GFDL/fre-examples/tree/update-readme/CEFI/CEFI-pp#cefi-regional-mom6-yamls)
+- [Example YAML files](): model, settings, compile, postprocess, analysis YAMLs 
 
 - To be added:
 
-	- [ ] SHiELD compile and pp yamls
+	- [ ] SHiELD pp yamls
  	- [ ] AM4 compile and pp yamls
 	- [ ] CM4 compile and pp yamls
 
