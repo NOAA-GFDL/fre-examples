@@ -1,0 +1,17 @@
+fre_properties:
+    MODEL: '2022aGFSv16'
+    NOTE: 'C768.RT2022_cpsd_GFSv16'
+    RELEASE: 'SHiELD_rt2022'
+    PPAN_WORKFLOW_NAME: 'pp-shield'
+    RUN_DIR: 'scratch'
+    DIR_EXT: 'rundir' 
+    GRID_RESOLUTION: '768'
+    GRID_TYPE: 'global'
+    RUNSCRIPT: 'RUN_SHiELD_rt2022_C768_cpsd_GFSv16.csh' 
+    SLRM_NTASKS: 1536 
+  
+directories:
+    history_dir: "/archive/$USER/{{ fre_properties.FRE_STEM }}/{{ name }}/{{ platform }}-{{ target }}/history"
+    pp_dir: "/archive/$USER/{{ fre_properties.FRE_STEM }}/{{ name }}/{{ platform }}-{{ target }}/pp"
+    analysis_dir: "/nbhome/$USER/{{ fre_properties.FRE_STEM }}/{{ name }}"
+    ptmp_dir: "/xtmp/$USER/ptmp"
